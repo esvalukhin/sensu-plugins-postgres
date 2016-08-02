@@ -1,10 +1,10 @@
 #! /usr/bin/env ruby
 #
-#   metric-postgres-connections
+#   metric-postgres-connections-by-clients
 #
 # DESCRIPTION:
 #
-#   This plugin collects postgres connection metrics
+#   This plugin collects postgres connection metrics by connected clients
 #
 # OUTPUT:
 #   metric data
