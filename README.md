@@ -18,6 +18,7 @@
  * bin/metric-postgres-graphite.rb
  * bin/metric-postgres-statsdb.rb
  * bin/metric-postgres-connections.rb
+ * bin/metric-postgres-connections-by-clients.rb
  * bin/metric-postgres-locks.rb
  * bin/metric-postgres-statsio.rb
  * bin/check-postgres-query.rb
