@@ -101,6 +101,16 @@ class PostgresStatsDBMetrics < Sensu::Plugin::Metric::CLI::Graphite
         value[:total] = (value[:waiting].to_i + value[:active].to_i)
     end
 
+    metric = {:active => 0, :waiting => 0, :total => 0}
+    
+    clients.each do |key,value|
+      metric[:active] += value[:active].to_i
+      metric[:waiting] += value[:waiting].to_i
+      metric[:total] += value[:total].to_i
+    end
+
+    clients[:all] = metric    
+
     clients.each do |client, metrics|
       metrics.each do |key, value|
           output "#{config[:scheme]}.connectios.#{config[:db]}.#{key}.\"#{client}\"", value, timestamp
