@@ -60,6 +60,12 @@ class PostgresStatsDBMetrics < Sensu::Plugin::Metric::CLI::Graphite
          short: '-d DB',
          long: '--db DB',
          default: 'postgres'
+ 
+  option :delimeter,
+         description: 'Delimeter sign for tags'
+         short: '-ds DELIMETER'
+         long: '--delimiter-sign DELIMETER'
+         default: ','
 
   option :scheme,
          description: 'Metric naming scheme, text to prepend to $queue_name.$metric',
@@ -113,7 +119,7 @@ class PostgresStatsDBMetrics < Sensu::Plugin::Metric::CLI::Graphite
 
     clients.each do |client, metrics|
       metrics.each do |key, value|
-          output "#{config[:scheme]}.connectios.#{config[:db]}.#{key}.\"#{client}\"", value, timestamp
+          output "#{config[:scheme]}.connections.#{config[:db]}.#{key}#{config[:delimeter]}host=#{client}", value, timestamp
       end
     end
 
