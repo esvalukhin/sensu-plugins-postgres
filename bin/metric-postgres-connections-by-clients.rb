@@ -62,10 +62,10 @@ class PostgresStatsDBMetrics < Sensu::Plugin::Metric::CLI::Graphite
          default: 'postgres'
  
   option :delimeter,
-         description: 'Delimeter sign for tags'
-         short: '-ds DELIMETER'
-         long: '--delimiter-sign DELIMETER'
-         default: ','
+         description: 'Delimeter sign for tags',
+         short: '-s DELIMETER',
+         long: '--delimiter-sign DELIMETER',
+         default: ':'
 
   option :scheme,
          description: 'Metric naming scheme, text to prepend to $queue_name.$metric',
@@ -82,8 +82,7 @@ class PostgresStatsDBMetrics < Sensu::Plugin::Metric::CLI::Graphite
     ]
 
     clients = {}
-
-
+    
     con.exec(request.join(' ')) do |result|
       result.each do |row|
         client_ip = row['client_addr']
